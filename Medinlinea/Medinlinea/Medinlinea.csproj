@@ -499,6 +499,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\layout.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Style\estilos-slide.css" />
     <Content Include="Style\estilos.css" />
     <Content Include="Style\fonts\BebasNeue-webfont.svg" />

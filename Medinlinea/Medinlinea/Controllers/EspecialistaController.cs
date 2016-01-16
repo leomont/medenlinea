@@ -20,14 +20,20 @@ namespace Medinlinea.Controllers
         //Realizado Por: Leonardo Montes
         //Fecha: 26/12/2015
         //Nota: Se modifica el metodo index por defecto de mvc, para realizar paginacion de especialistas
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, int idEspecialidad = 0)
         {
             List<Mensaje> lstMensajes = (((List<Mensaje>)TempData["mensajes"]) == null) ? new List<Mensaje>() : (List<Mensaje>)TempData["mensajes"];
 
             ViewBag.lstMensajes = lstMensajes;
             TempData.Remove("mensajes");
-            var data = db.Especialistas.Include(e => e.Curriculums).Include(e => e.Especialidades).Include(e => e.Membresias).Include(e => e.Login).OrderByDescending(e => e.IdEspecialista).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE); ;
-         
+
+            var data = db.Especialistas.Include(e => e.Curriculums).Include(e => e.Especialidades).Include(e => e.Membresias).Include(e => e.Login).OrderByDescending(e => e.IdEspecialista).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE); 
+            if (idEspecialidad > 0)
+            {
+                data = db.Especialistas.Include(e => e.Curriculums).Include(e => e.Especialidades).Include(e => e.Membresias).Include(e => e.Login).Where(m => m.Especialidades.IdEspecialidad == idEspecialidad).OrderByDescending(e => e.IdEspecialista).Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE); ;   
+            }
+
+
             EspecialistasModel model = new EspecialistasModel
             {
                 Especialistas = data,
@@ -39,6 +45,7 @@ namespace Medinlinea.Controllers
                 }
 
             };
+
 
             List<Direcciones> direcciones=db.Direcciones.Include(m=> m.Especialistas).ToList();
             List<Publicidades> listado1 = db.Publicidades.Where(m => m.TipoPublicidad.ToUpper() == "Fondo".ToUpper()).ToList();
@@ -434,5 +441,7 @@ namespace Medinlinea.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

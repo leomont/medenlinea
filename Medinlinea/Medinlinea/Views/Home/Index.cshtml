@@ -79,15 +79,15 @@
                         if (!string.IsNullOrWhiteSpace(item.ImagenEspecialidad))
                         {
                             <div class="img-caption">
-                                <img src="@item.ImagenEspecialidad" alt="">
+                                <img src="@item.ImagenEspecialidad" alt="@item.NombreEspecialidad" style="cursor:pointer" onclick='enviar("@item.IdEspecialidad");'>
                                 <div class="caption"><br>@item.NombreEspecialidad</div>
                             </div>
                         }
                         else
                         {
                             <div class="img-caption">
-                                <img src="img/manizales/manizales_1.jpg" alt="">
-                                <div class="caption"><br>@item.NombreEspecialidad</div>
+                                <img src="img/manizales/manizales_1.jpg" alt="Especialidad" style="cursor:pointer">
+                                <div class="caption"><br>Especialidad</div>
                             </div>
                         }
                     }
@@ -97,3 +97,12 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    function enviar(idEspecialidad)
+    {
+        showLoading();
+        location.href = location.protocol + '//' + location.host + '/Especialista/Index?idEspecialidad=' + idEspecialidad;
+    }
+</script>
