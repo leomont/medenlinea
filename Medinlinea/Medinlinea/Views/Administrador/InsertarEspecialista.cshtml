@@ -1,0 +1,268 @@
+﻿@using Medinlinea.Models
+@{
+    ViewBag.Title = "InsertarEspecialista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<Especialidades> listado = (ViewBag.listado != null) ? (List<Especialidades>)ViewBag.listado : new List<Especialidades>();
+    List<Ciudades> listado2 = (ViewBag.listado2 != null) ? (List<Ciudades>)ViewBag.listado2 : new List<Ciudades>();
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/css/jquery.steps.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="form-especialista" enctype="multipart/form-data" action="~/Especialista/Create_nuevo" method="post">
+                @Html.AntiForgeryToken()
+                <h2>Datos Especialista</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="nombre_especialista" id="nombre_especialista" placeholder="Ingresa tu nombre" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="apellido_especialista" name="apellido_especialista" placeholder="Ingresa tu apellido" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="foto-especialista" name="foto-especialista" placeholder="Ingresa tu foto">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Pagina Web</label>
+                        <div class="col-sm-9">
+                            <input type="url" class="form-control" id="pagina-especialista" name="pagina-especialista" placeholder="Ingresa tu pagina">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email_especialista" name="email_especialista" placeholder="Ingresa tu email" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Celular</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="celular-especialista" name="celular-especialista" placeholder="Ingresa tu celular" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Especialidad</label>
+                        <div class="col-sm-9">
+                            <select id="idEspecialidad" name="idEspecialidad" class="form-control">
+                                <option value="">Seleccione Especialidad</option>
+                                @{
+                                    foreach (Especialidades obj in listado)
+                                    {
+                                        <option value="@obj.IdEspecialidad">@obj.NombreEspecialidad</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Membresia</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tipo Membresia</label>
+                        <div class="col-sm-9">
+                            <select name="tipo_membresia" id="tipo_membresia" class="form-control" required>
+                                <option value="">Seleccione tipo membresia</option>
+                                <option value="premium">Premium</option>
+                                <option value="gratuita">Gratuita</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Inicio</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="fecha_inicio_membresia" name="fecha_inicio_membresia" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Fin</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="fecha_fin_membresia" name="fecha_fin_membresia" required>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Consultorio</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Departamento</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Departamento-consultorio" name="Departamento-consultorio" placeholder="Ingresa tu departamento">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Ciudad</label>
+                        <div class="col-sm-9">
+                            <select id="idCiudad" name="idCiudad" class="form-control">
+                                <option value="">Seleccione Ciudad</option>
+                                @{
+                                    foreach (Ciudades obj in listado2)
+                                    {
+                                        <option value="@obj.IdCiudad">@obj.NombreCiudad</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Calle</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="calle_consultorio" name="calle_consultorio" placeholder="Ingresa tu calle" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="telefono-consultorio" name="telefono-consultorio" placeholder="Ingresa tu telefono fijo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <legend class="margen">Ubicación</legend>
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="map-content">
+                                <div id="panel">
+                                    <input id="address_map" type="text" class="input-lg" value="Bogota D.C , Colombia">
+                                    <input type="button" class="btn btn-primary" value="Geolocalizar" onclick="codeAddress()">
+                                </div>
+                                <div id="map-canvas"></div>
+                                <input type="hidden" name="latitud" id="latitud" />
+                                <input type="hidden" name="longitud" id="longitud" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Logueo</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Contrase&ntilde;a</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="contraseña_especialista" name="contraseña_especialista" placeholder="Ingresa tu contraseña" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Confirmar Contrase&ntilde;a</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="confirmar_contraseña_especialista" name="confirmar_contraseña_especialista" placeholder="ingresa de nuevo tu contraseña" required>
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    /*---------------variables para inicializar y actualizar el mapa de registro----------*/
+    /*Posicionar marker de mapa en el municipio seleccionado*/
+
+    var geocoder = new google.maps.Geocoder();
+    var map = null;
+    var marker;
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            zoom: 11
+        }
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true
+        });
+        codeAddress();
+        google.maps.event.addListener(marker, 'dragstart', function () {
+            //updateMarkerAddress('Ubicando');
+        });
+
+        google.maps.event.addListener(marker, 'drag', function () {
+            //updateMarkerStatus('Ubicando');
+            //updateMarkerPosition(marker.getPosition());
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            //updateMarkerStatus('Ubicado');
+            geocodePosition(marker.getPosition());
+        });
+    }
+
+    function updateMarkerPosition(latLng) {
+        document.getElementById('latitud').value = [latLng.lat()]
+        document.getElementById('longitud').value = [latLng.lng()]
+    }
+
+    function updateMarkerAddress(str) {
+        document.getElementById('address_map').value = str;
+    }
+
+    function geocodePosition(pos) {
+        geocoder.geocode({
+            latLng: pos
+        }, function (responses) {
+            if (responses && responses.length > 0) {
+                updateMarkerAddress(responses[0].formatted_address);
+            } else {
+                updateMarkerAddress('No se puede encontrar la dirección.');
+            }
+        });
+    }
+
+    function codeAddress() {
+        var address_map = document.getElementById('address_map');
+        if (address_map.value == '') {
+            address_map.value = "Bogota D.C , Colombia";
+        }
+        var address = address_map.value;
+        if (map != null) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                    updateMarkerPosition(results[0].geometry.location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }    
+</script>
+
+
+
+
+
+

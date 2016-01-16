@@ -1,0 +1,82 @@
+﻿@model Medinlinea.Models.Usuarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CelularUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CelularUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CedulaUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CedulaUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login.UsuarioLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login.UsuarioLogin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

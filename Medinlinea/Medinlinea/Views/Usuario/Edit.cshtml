@@ -1,0 +1,95 @@
+﻿@model Medinlinea.Models.Usuarios
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/css/jquery.steps.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="form-comercial-editar" enctype="multipart/form-data" action="~/Usuario/Edit" method="post">
+                <input type="hidden" name="IdUsuario" id="IdUsuario" value="@Model.IdUsuario" />
+                @Html.AntiForgeryToken()
+                <h2>Datos del Vendedor</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="NombreUsuario" id="nombre_vendedor" value="@Model.NombreUsuario">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="ApellidoUsuario" id="apellido_vendedor" value="@Model.ApellidoUsuario">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Cedula</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="CedulaUsuario" id="cedula-vendedor" value="@Model.CedulaUsuario">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" name="EmailUsuario" id="email_vendedor" value="@Model.EmailUsuario">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Celular</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="CelularUsuario" id="celular-vendedor" value="@Model.CelularUsuario">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Direccion</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Direccion" id="direccion-vendedor" value="@Model.Direccion">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Estado</label>
+                        <div class="col-sm-9">
+                            <select id="Activo" name="Activo" class="form-control">
+                                <option value="false">Seleccione Estado</option>
+                                <option value="true">ACTIVO</option>
+                                <option value="false">INACTIVO</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Logueo</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="contrasena_vendedor" id="contrasena_vendedor" value="##########">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Confirmar Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="confirmar_contrasena_vendedor" id="confirmar_contrasena_vendedor" value="##########">
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>

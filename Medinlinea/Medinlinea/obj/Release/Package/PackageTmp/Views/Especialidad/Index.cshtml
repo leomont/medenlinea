@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Medinlinea.Models.Especialidades>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreEspecialidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenEspecialidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreEspecialidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagenEspecialidad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdEspecialidad }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdEspecialidad }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdEspecialidad })
+        </td>
+    </tr>
+}
+
+</table>

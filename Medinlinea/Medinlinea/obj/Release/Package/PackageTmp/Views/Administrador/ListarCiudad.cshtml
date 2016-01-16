@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Medinlinea.Models.Ciudades>
+
+@{
+    ViewBag.Title = "ListarCiudad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListarCiudad</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCiudad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCiudad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCiudad }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdCiudad }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCiudad })
+        </td>
+    </tr>
+}
+
+</table>

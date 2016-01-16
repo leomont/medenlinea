@@ -1,0 +1,34 @@
+﻿@model Medinlinea.Models.Curriculums
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Curriculums</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenCV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenCV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCV)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCV }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

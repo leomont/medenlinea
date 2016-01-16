@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Medinlinea.Models.Articulos>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resumen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cuerpo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etiquetas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenArt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialistas.NombreEsp)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resumen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuerpo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etiquetas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagenArt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialistas.NombreEsp)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdArticulo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdArticulo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdArticulo })
+            </td>
+        </tr>
+    }
+
+</table>
+

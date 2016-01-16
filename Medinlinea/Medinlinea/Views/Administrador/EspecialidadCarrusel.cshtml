@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "EspecialidadCarrusel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<Especialidades> listado = (ViewBag.listado != null) ? (List<Especialidades>)ViewBag.listado : new List<Especialidades>();
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="cajaTitulo">
+                <p class="text-center" style="font-size:30px !important; color:white;">GESTIONAR CARRUSEL</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+   
+            <form id="form-especialidad" enctype="multipart/form-data" action="~/Especialidad/Carrusel" method="post" onsubmit="showLoading();">
+                @Html.AntiForgeryToken()
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Especialidad</th>
+                                <th>Carrusel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Especialidades item in listado)
+                            {
+                                <tr>
+                                    <td>@item.NombreEspecialidad</td>
+                                    @{
+                                        if (@item.Estado == true)
+                                        {
+                                            <td><input name="seleccionados" value="@item.IdEspecialidad" id="@item.IdEspecialidad" checked type="checkbox"></td>
+                                        }
+                                        else
+                                        {
+                                            <td><input name="seleccionados" value="@item.IdEspecialidad" id="@item.IdEspecialidad" type="checkbox"></td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="text-center">
+                    <button type="submit" name="paginar" class="btn btn-primary btn-sm">Confirmar</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+

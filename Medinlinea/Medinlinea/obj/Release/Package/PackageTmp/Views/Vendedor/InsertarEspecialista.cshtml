@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "InsertarEspecialista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/css/jquery.steps.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form action="" id="form-especialista">
+                <h2>Datos Especialista</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="nombre-especialista" placeholder="Ingresa tu nombre">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="apellido-especialista" placeholder="Ingresa tu apellido">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="foto-especialista" placeholder="Ingresa tu foto">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Pagina Web</label>
+                        <div class="col-sm-9">
+                            <input type="url" class="form-control" id="pagina-especialista" placeholder="Ingresa tu pagina">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email-especialista" placeholder="Ingresa tu email">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Celular</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="celular-especialista" placeholder="Ingresa tu celular">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Especialidad</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="especialidad-especialista" placeholder="Ingresa tu especialidad">
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Membresia</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tipo Membresia</label>
+                        <div class="col-sm-9">
+                            <select name="tipo-membresia" id="" class="form-control">
+                                <option value="premium">Premium</option>
+                                <option value="gratuita">Gratuita</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Inicio</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="fecha-inicio-membresia">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Fin</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="fecha-fin-membresia">
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Consultorio</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Pais</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="pais-consultorio" placeholder="Ingresa tu pais">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Departamento</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Departamento-consultorio" placeholder="Ingresa tu departamento">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Ciudad</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="ciudad-consultorio" placeholder="Ingresa tu ciudad">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Calle</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="calle-consultorio" placeholder="Ingresa tu calle">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="telefono-consultorio" placeholder="Ingresa tu telefono fijo">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Latitud</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="latitud-consultorio" placeholder="Ingresa tu latitud">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Longitud</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="longitud-consultorio" placeholder="Ingresa tu longitud">
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Logueo</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="contraseña-especialista" placeholder="Ingresa tu contraseña">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Confirmar Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="confirmar-contraseña-especialista" placeholder="ingresa de nuevo tu contraseña">
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>
+

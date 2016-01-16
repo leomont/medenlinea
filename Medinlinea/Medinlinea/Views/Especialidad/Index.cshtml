@@ -1,0 +1,53 @@
+﻿@model Medinlinea.Models.EspecialidadesModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+
+<div class="container">
+    <!--Contenido que se muestra en la pagina-->
+    <div class="content-wrap">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="cajaTitulo">
+                    <p class="text-center" style="font-size:30px !important; color:white;">ESPECIALIDADES</p>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                @foreach (var item in Model.Especialidades)
+                {
+                    <div class="col-xs-12 col-sm-9 col-sm-offset-1 col-md-9 col-md-offset-1 col-lg-9 col-lg-offset-1">
+                        <div class="col-xs-12 col-sm-2 col-lg-2">
+                            <span></span>
+                            <img width="150" height="150" class="img-responsive" src="@item.ImagenEspecialidad">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-lg-10">
+                            <p class="text-left"><i class="fa fa-file fa-2x"></i><span style="font-size:23px !important;">&nbsp;&nbsp;&nbsp;@item.NombreEspecialidad</span></p>
+                            <br />
+                            <br />
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.IdEspecialidad }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.IdEspecialidad }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.IdEspecialidad })
+                            </p>
+                            <hr class="separar" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @*Por: Leonardo Montes
+        Fecha: 27/12/2015
+        Nota: Segmento de codigo para la paginacion de articulos*@
+
+    <div class="pager">
+        @*<div class="btn-group pull-right">*@
+        @Html.PageLinks(Model.Pagination, x => Url.Action("Index", new { page = x }))
+    </div>
+</div>

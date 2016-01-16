@@ -1,0 +1,375 @@
+﻿@model Medinlinea.Models.EspecialistasModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Direcciones> listado = (ViewBag.listado != null) ? (List<Direcciones>)ViewBag.listado : new List<Direcciones>();
+
+
+    List<Publicidades> listado1 = (ViewBag.publicidadF != null) ? (List<Publicidades>)ViewBag.publicidadF : new List<Publicidades>();
+    List<Publicidades> listado2 = (ViewBag.publicidadDS != null) ? (List<Publicidades>)ViewBag.publicidadDS : new List<Publicidades>();
+    List<Publicidades> listado3 = (ViewBag.publicidadSH != null) ? (List<Publicidades>)ViewBag.publicidadSH : new List<Publicidades>();
+    List<Publicidades> listado4 = (ViewBag.publicidadDI != null) ? (List<Publicidades>)ViewBag.publicidadDI : new List<Publicidades>();
+}
+
+<link href="~/Style/Styles.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+
+<div class="container contenedor-buscador">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12">
+            <div class="bs-example">
+                <div id="myCarousel" class="carousel slide" data-interval="6500" data-ride="carousel">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item carousel-fade">
+                            <img src="../img/salud.jpg" alt="" width="100%" height="200">
+                        </div>
+                        <div class="item carousel-fade">
+                            <img src="../img/salud.jpg" alt="" width="100%" height="200">
+                        </div>
+                        <div class="item carousel-fade">
+                            <img src="../img/salud.jpg" alt="" width="100%" height="200">
+                        </div>
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+
+
+            <!--Especialidades-->
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                <div class="especialidades">
+                    <h3>Cirujanos Plasticos | Manizales</h3>
+                    @{
+                        foreach (Especialistas item in @Model.Especialistas)
+                        {
+                            <div class="well well-lg col-xs-12">
+                                <ul>
+                                    <li style="float:left;"><h5>@item.NombreEsp @item.ApellidoEsp</h5></li>
+                                    <li style="float:left; margin-left: 30px;">
+                                        <input id="input-2c" class="rating" min="0" max="5" step="0.5" data-size="xs"
+                                               data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa" data-default-caption="{rating} estrellas">
+                                    </li>
+                                </ul>
+                                <br />
+                                <hr>
+
+                                <p style="clear: both;">@item.Especialidades.NombreEspecialidad.ToUpper()</p>
+
+                                <p><a style="text-decoration: none" href="@item.PaginaWebEsp">@item.PaginaWebEsp</a></p>
+                                <p>Email: @item.EmailEsp</p>
+                                <p><a style="text-decoration: none" href="">Mapa</a></p>
+
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-md-offset-3">
+                                    <img src="@item.FotoEsp" alt="" width="200" height="100">
+                                </div>
+
+                                <hr>
+
+                                <div class="col-xs-12">
+                                    <ul class="list-inline">
+                                        <br>
+                                        <li><a style="text-decoration: none; cursor:pointer;" class="btn-telefono"><h5><i class="glyphicon glyphicon-eye-open"></i> Telefono</h5></a></li>
+                                        <li><a style="text-decoration: none; cursor:pointer;" class="btn-consulta"><h5><i class="glyphicon glyphicon-envelope"></i> Consultar en linea</h5></a></li>
+                                        <li><a style="text-decoration: none; cursor:pointer;" class="btn-articulos"><h5><i class="glyphicon glyphicon-list-alt"></i> Articulos</h5></a></li>
+                                        <li style="float:right;"><a class="btn-info" style="text-decoration: none; cursor:pointer; color:#29527c !important;"><h5><i class="glyphicon glyphicon-arrow-down"></i> Ampliar informacion</h5></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-xs-12 telefono">
+                                    <p>
+                                        Telefono: @item.CelularEsp
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 consulta-linea">
+                                    <form id="form-especialista-citas" enctype="multipart/form-data" action="~/Cita/Create" method="post" onsubmit="showLoading();">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="IdEspecialista" id="IdEspecialista" value="@item.IdEspecialista" />
+                                        <section>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="NombrePac" id="NombrePac" placeholder="Ingresa tu nombre">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Sexo</label>
+                                                <div class="col-sm-9">
+                                                    <select name="Sexo" id="Sexo" class="form-control">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="Masculino">Masculino</option>
+                                                        <option value="Femenino">Femenino</option>
+                                                    </select>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Nacimiento</label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" class="form-control" name="FechaNacimientoPac" id="FechaNacimientoPac">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                                                <div class="col-sm-9">
+                                                    <input type="email" class="form-control" name="EmailPac" id="EmailPac" placeholder="Ingresa tu email">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Telefono</label>
+                                                <div class="col-sm-9">
+                                                    <input type="tel" class="form-control" name="TelefonoPac" id="TelefonoPac" placeholder="Ingresa tu celular">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Mensaje</label>
+                                                <div class="col-sm-9">
+                                                    <textarea class="form-control" maxlength="1000" name="MensajeCita" id="MensajeCita" cols="5" rows="5"></textarea>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Imagen 1</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" class="form-control" name="imagen-uno-consultor" id="imagen-uno-consultor" placeholder="Ingresa tu foto">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Imagen 2</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" class="form-control" name="imagen-dos-consultor" id="imagen-dos-consultor" placeholder="Ingresa tu foto">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Imagen 3</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" class="form-control" name="imagen-tres-consultor" id="imagen-tres-consultor" placeholder="Ingresa tu foto">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Imagen 4</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" class="form-control" name="imagen-cuatro-consultor" id="imagen-cuatro-consultor" placeholder="Ingresa tu foto">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!-- BOTONES -->
+                                        <div class="col-xs-12 col-sm-12">
+                                            <p class="text-center">
+                                                <button type="button" name="paginar" onclick="validar_enviar();" class="btn btn-primary btn-sm">Solicitar Cita</button>
+                                                <button type="button" name="cancelar" class="btn btn-danger btn-sm">Cancelar</button>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-xs-12 articulos">
+                                    @{
+                            if (@item.Articulos != null)
+                            {
+                                foreach (Articulos art in @item.Articulos)
+                                {
+                                    <div class="col-xs-12 col-sm-2">
+                                        <img src="@art.ImagenArt" alt="" width="200" height="100">
+                                    </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-sm-offset-4">
+                                            <p>@art.Etiquetas</p>
+                                            <p>@art.Resumen</p>
+                                        </div>
+                                }
+                            }
+                                    }
+                                </div>
+                                <div class="col-xs-12 ampliar-info">
+                                    <p>
+                                        @{
+                            if (@item.Curriculums != null)
+                            {
+                                @item.Curriculums.DescripcionCV
+                            }
+                                        }
+                                    </p>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+
+            <!--Mapa-->
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <br>
+                @*<img class="img-responsive" src="../img/mapa.png" alt="">*@
+                <div id="map-canvas"></div>
+
+                <hr />
+
+                <div class="bs-example">
+                    <div id="myCarousel" class="carousel slide" data-interval="6500" data-ride="carousel">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            @{
+                                foreach (Publicidades item in @listado2)
+                                {
+                                    <div class="active item carousel-fade">
+                                        <img src="@item.ImagenPub" alt="">
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <!-- Carousel nav -->
+                        <!--<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>-->
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="bs-example">
+                    <div id="myCarousel" class="carousel slide" data-interval="6500" data-ride="carousel">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item carousel-fade">
+                                <img src="../img/manizales/manizales_1.jpg" alt="">
+                            </div>
+                            <div class="item carousel-fade">
+                                <img src="../img/manizales/manizales_1.jpg" alt="">
+                            </div>
+                            <div class="item carousel-fade">
+                                <img src="../img/manizales/manizales_1.jpg" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="pager">
+        @*<div class="btn-group pull-right">*@
+        @Html.PageLinks(Model.Pagination, x => Url.Action("Index", new { page = x }))
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap-rating/js/star-rating.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        cargarMapa();
+    });
+
+    var map;
+    var markers = [];
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            zoom: 6,
+            center: new google.maps.LatLng(4.214943141390651, -73.828125)
+        }
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    }
+
+    $('.carousel').carousel({
+        interval: 10000
+    });
+
+    /* para ver mas informacion */
+    $(".telefono, .consulta-linea, .articulos, .ampliar-info").hide();
+
+    $(".btn-telefono").click(function () {
+        $(".telefono").slideToggle("slow");
+        $(".consulta-linea, .articulos, .ampliar-info").hide("slow");
+    });
+
+    $(".btn-consulta").click(function () {
+        $(".consulta-linea").slideToggle("slow");
+        $(".telefono, .articulos, .ampliar-info").hide("slow");
+    });
+
+    $(".btn-articulos").click(function () {
+        $(".articulos").slideToggle("slow");
+        $(".telefono, .consulta-linea, .ampliar-info").hide("slow");
+    });
+
+    $(".btn-info").click(function () {
+        $(".ampliar-info").slideToggle("slow");
+        $(".telefono, .consulta-linea, .articulos").hide("slow");
+    });
+
+
+    function cargarMapa() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+        var bounds = new google.maps.LatLngBounds();
+
+        @{
+            @:initialize();
+
+            foreach(Direcciones sbitem in listado ){
+                    <text>
+        var latlng = new google.maps.LatLng("@sbitem.Latitud", "@sbitem.Longitud");
+        bounds.extend(latlng);
+        var marker = new google.maps.Marker({ position: latlng, map: map, zIndex: parseInt(@sbitem.IdDireccion), title: "@sbitem.Especialistas.NombreEsp @sbitem.Especialistas.ApellidoEsp", animation: google.maps.Animation.DROP, icon: "../img/marker.png" });
+        markers.push(marker);
+        google.maps.event.addListener(marker, 'click', function () {
+            mostrar_infowindow(this);
+        });
+        </text>
+
+                }
+        }
+
+    }
+</script>

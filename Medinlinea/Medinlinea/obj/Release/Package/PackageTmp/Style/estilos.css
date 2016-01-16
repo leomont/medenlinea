@@ -1,0 +1,483 @@
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('fonts/BebasNeue-webfont.eot');
+    src: url('fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/BebasNeue-webfont.woff') format('woff'),
+         url('fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* CSS reset */
+ol,ul {
+	list-style:none !important;
+}
+
+a{color: #337ab7;}
+a:link, a:visited { text-decoration: none }
+a:hover { text-decoration: none; color: white; }
+a{
+  cursor: pointer;
+}
+
+/* General Demo Style */
+/* ============== Contenedor de secciones ============ */
+
+.container
+{
+  margin-top: 20px;
+}
+
+.buscadores
+{
+  margin-top: 80px;
+}
+
+.size-icon-buscadores
+{
+  font-size: 20px;
+  color: white;
+}
+
+
+body{
+	font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+    color: #000 !important;
+	overflow-x: hidden;
+    margin: 0px;
+    padding-top:0;
+}
+.ie7 body{
+	overflow:hidden;
+}
+
+.codrops-top{
+  font-family: Arial, sans-serif;
+  line-height: 24px;
+  font-size: 11px;
+  width: 100%;
+  background: #000;
+  opacity: 0.9;
+  text-transform: uppercase;
+  z-index: 9999;
+  margin-top: -20px;
+  position: relative;
+  -moz-box-shadow: 1px 0px 2px #000;
+  -webkit-box-shadow: 1px 0px 2px #000;
+  box-shadow: 1px 0px 2px #000;
+}
+
+/* ============= LOGO MEDENLINEA =============== */
+
+.logo
+{
+  position: relative;
+  margin-left: 15px;
+  max-width: 150px;
+  padding: 10px;
+}
+
+.letra-med
+{
+ color: #28B5C6;
+}
+
+.letra-enlinea
+{
+ color: #fff;
+}
+
+/*=========== ADMIN ===============*/
+
+.logo-dos
+{
+  position: relative;
+  margin-top: -3px;
+  padding: 10px;
+}
+
+.letra-med-dos
+{
+ color: #28B5C6;
+}
+
+.letra-enlinea-dos
+{
+ color: #fff;
+}
+
+/* ================ Inicio de sesion ================ */
+
+.iniciar-sesion
+{
+  float: right;
+  font-size: 14px;
+  margin-top: -45px;
+  color: white;
+  margin-right: 22px;
+}
+
+/* ================= slide ================ */
+
+    .img-caption { 
+      position: relative; 
+    } 
+
+    .img-caption .caption { 
+      position: absolute; 
+      width: 100%; 
+      height: 50px; 
+      bottom: 0px; 
+      left: 0px; 
+      color: #ffffff; 
+      background: #000; 
+      text-align:center; 
+      font-weight:bold; 
+      opacity:0.7; 
+    } 
+
+
+    /* =============== modal ================ */
+
+    .modal-content
+    {
+      margin-top: 35% !important;
+    }
+
+    /* ============== STEPS ================*/
+
+    .wizard > .content {
+    background: #fff !important;
+    display: block;
+    margin: 0.5em;
+    min-height: 35em;
+    overflow: hidden;
+    position: relative;
+    width: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+/* ============= MENU MEDENLINEA =============== */
+
+#menu{
+/*Rev 140508*/
+  width:100%;
+  min-width:300px;
+  margin:0 auto;
+  /**/
+  background: #222;
+  color: #FFF;
+  height: 45px;
+  overflow:no-display;
+  border-bottom: 2px solid #222;
+  /*box-shadow: 0px 2px 9px #B1B1B1;*/
+
+}
+
+#menu ul,#menu li{
+  margin:0 auto;
+  padding:0 0;
+  list-style:none;
+}
+#menu ul{height:45px;width:100%}
+#menu li{
+    float:left;
+    display:inline;
+    position:relative;
+    font:0.9em 'Lato', sans-serif;
+  /*font-weight:700;*/
+}
+#menu a{/*main menu*/
+    display: block;
+    line-height: 45px;
+    padding: 0 14px;
+    text-decoration: none;
+    color: #dedede;
+}
+#menu li a:hover{
+  color:#fff;
+-webkit-transition: all .3s ease-in-out;
+-moz-transition: all .3s ease-in-out;
+-ms-transition: all .3s ease-in-out;
+-o-transition: all .3s ease-in-out;
+transition: all .3s ease-in-out;
+
+}
+#menu input{display:none;margin:0 0;padding:0 0;width:80px;height:30px;opacity:0;cursor:pointer
+}
+#menu label{
+    font:normal 20px Arial;
+  display:none;
+  width:35px;
+  height:36px;
+  line-height:36px;
+  text-align:center;
+  float:right;
+  
+}
+
+/*BRAND*/
+#menu label span{font-size:80%;position:absolute;left:35px;}
+#menu ul.menus{/*SUBMENUS*/
+    height: auto;
+    overflow: hidden;
+    width: 230px;
+    background: #383838;
+    position: absolute;
+    z-index: 99;
+    display: none;
+}
+#menu ul.menus li{
+display: block;
+width: 100%;
+font:normal 100% Arial;
+text-transform: none;
+text-shadow: none;
+}
+
+#menu ul.menus a{
+color: #FFF;
+line-height: 40px;  /*REV*/
+  -webkit-transition: all .6s ease-in-out;
+-moz-transition: all .6s ease-in-out;
+-ms-transition: all .6s ease-in-out;
+-o-transition: all .6s ease-in-out;
+transition: all .6s ease-in-out;
+}
+
+#menu li:hover ul.menus{display:block;}
+#menu ul.menus a:hover{
+  
+background: #bebebe;
+color: #222;
+-webkit-transition: all .1s ease-in-out;
+-moz-transition: all .1s ease-in-out;
+-ms-transition: all .1s ease-in-out;
+-o-transition: all .1s ease-in-out;
+transition: all .1s ease-in-out;
+}
+
+
+
+/* ============ PARA IMAGENES SLIDE ADMINISTRADOR =========== */
+
+figure.snip1090 {
+  background-blend-mode: multiply;
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 10px 1%;
+  min-width: 220px;
+  max-width: 310px;
+  max-height: 230px;
+  width: 100%;
+  background-color: #535353;
+  background-size: 100% auto;
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+figure.snip1090 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+figure.snip1090 img {
+  max-width: 100%;
+  position: relative;
+  opacity: 0;
+}
+figure.snip1090 figcaption {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 30px;
+  z-index: 1;
+}
+figure.snip1090 h2,
+figure.snip1090 p {
+  margin: 0;
+}
+figure.snip1090 h2 {
+  display: inline-block;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+figure.snip1090 h2 span {
+  font-weight: 800;
+}
+figure.snip1090 p {
+  font-size: 0.85em;
+}
+figure.snip1090 .links {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+figure.snip1090 .links a {
+  width: 50%;
+  float: left;
+  display: block;
+  background: none;
+  border: 0;
+  background-color: #202020;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 44px;
+  text-decoration: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+figure.snip1090 .links a i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+figure.snip1090 .links a:last-of-type {
+  background-color: #ffffff;
+  color: #393939;
+}
+figure.snip1090 .links a:hover {
+  background-color: #131313;
+  color: #fff;
+}
+figure.snip1090.blue {
+  background-color: #164666;
+}
+figure.snip1090.blue a {
+  background-color: #2980b9;
+}
+figure.snip1090.blue a:last-of-type {
+  background-color: #ffffff;
+  color: #2980b9;
+}
+figure.snip1090.blue a:hover {
+  background-color: #164666;
+  color: #fff;
+}
+figure.snip1090.red {
+  background-color: #6d2018;
+}
+figure.snip1090.red a {
+  background-color: #c0392b;
+}
+figure.snip1090.red a:last-of-type {
+  background-color: #ffffff;
+  color: #c0392b;
+}
+figure.snip1090.red a:hover {
+  background-color: #6d2018;
+  color: #fff;
+}
+figure.snip1090.yellow {
+  background-color: #976008;
+}
+figure.snip1090.yellow a {
+  background-color: #f39c12;
+}
+figure.snip1090.yellow a:last-of-type {
+  background-color: #ffffff;
+  color: #f39c12;
+}
+figure.snip1090.yellow a:hover {
+  background-color: #976008;
+  color: #fff;
+}
+figure.snip1090.green {
+  background-color: #145b32;
+}
+figure.snip1090.green a {
+  background-color: #27ae60;
+}
+figure.snip1090.green a:last-of-type {
+  background-color: #ffffff;
+  color: #27ae60;
+}
+figure.snip1090.green a:hover {
+  background-color: #145b32;
+  color: #fff;
+}
+figure.snip1090:hover img,
+figure.snip1090.hover img {
+  opacity: 1;
+}
+figure.snip1090:hover figcaption,
+figure.snip1090.hover figcaption {
+  opacity: 0;
+}
+figure.snip1090:hover:after,
+figure.snip1090.hover:after {
+  opacity: 0.85;
+}
+figure.snip1090:hover .reveal:after,
+figure.snip1090.hover .reveal:after {
+  left: 100%;
+}
+
+/* ============ TABLAS ================= */
+
+tr th 
+{
+  text-align: center !important;
+}
+
+tr td
+{
+  text-align: center !important;
+}
+
+
+/*MOBIL VERSION, 0 > 600px*/
+
+@media screen and (max-width: 600px){
+
+  #menu{position:relative;background:#222;color:#fff;  border-bottom: 0px solid #222;  
+
+}
+
+#menu ul{
+  background:#555;
+  position:absolute;
+  top:100%;
+  left:0;left:0;
+  z-index:3;
+  height:auto;
+  display:none
+}
+#menu ul.menus{
+  width:100%;
+  position:static;
+  padding-left:0px;
+}
+#menu li{
+  display:block;
+  float:none;
+  width:auto; 
+  font:normal 90% Arial;
+}
+#menu input,#menu label{
+  position:absolute;
+margin:0  2%;
+float:right;  display:block;}
+
+#menu input{z-index:4;}
+#menu input:checked + label{color:#fff}
+#menu input:checked ~ ul{display:block}
+
+}
+/*End Media Queries*/
+/*End CSS*/
+
+
+
+
+

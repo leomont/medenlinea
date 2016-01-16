@@ -1,0 +1,64 @@
+﻿@*@model IEnumerable<Medinlinea.Models.Articulos>*@
+@model Medinlinea.Models.ArticulosModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Articulos de Medicos Especialistas</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Articulo", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+@foreach (var item in Model.Articulos)
+{
+    <div class="row panel">
+        @*<div style="width:30%; float:left;">*@
+        <div class="col-xs-4">
+            <img src="@Url.Content(item.ImagenArt)" width="170" height="190" alt="@item.Titulo" title="@item.Titulo" />
+        </div>
+        @*<div style="width:70%; float:left;">*@
+        <div class="well col-xs-8">
+            <h3>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </h3>
+            <p>
+                @Html.DisplayFor(modelItem => item.Especialistas.NombreEsp)
+                @Html.DisplayFor(modelItem => item.Especialistas.ApellidoEsp)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Resumen)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Etiquetas)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Cuerpo)
+            </p>
+            <p>
+                @*Realizado Por: Leonardo Montes *@
+                @*Fecha: 27/12/2015 *@
+                @*Nota:Esta opcion muestra el articulo completo, con todos los campos, en una nueva ventana*@
+                @Html.ActionLink("Ver Articulo Completo", "Details", new { id = item.IdArticulo })
+            </p>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdArticulo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdArticulo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdArticulo })
+            </p>
+        </div>
+    </div>
+}
+
+
+@*Por: Leonardo Montes
+    Fecha: 27/12/2015
+    Nota: Segmento de codigo para la paginacion de articulos*@
+
+<div class="pager">
+    @*<div class="btn-group pull-right">*@
+        @Html.PageLinks(Model.Pagination, x => Url.Action("Index", new { page = x }))
+    </div>
+
+

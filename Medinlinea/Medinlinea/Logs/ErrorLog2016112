@@ -1,0 +1,2 @@
+12/01/2016 11:33:05 a. m. ==> The type 'Edm.String' of the member 'CedulaUsuario' in the conceptual side type 'MedinlineaModel.Usuarios' does not match with the type 'System.Int32' of the member 'CedulaUsuario' on the object side type 'Medinlinea.Models.Usuarios'.
+12/01/2016 11:33:18 a. m. ==> The type 'Edm.String' of the member 'CedulaUsuario' in the conceptual side type 'MedinlineaModel.Usuarios' does not match with the type 'System.Int32' of the member 'CedulaUsuario' on the object side type 'Medinlinea.Models.Usuarios'.

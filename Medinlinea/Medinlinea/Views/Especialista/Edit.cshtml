@@ -1,0 +1,307 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Especialidades> listado = (ViewBag.listado != null) ? (List<Especialidades>)ViewBag.listado : new List<Especialidades>();
+    List<Ciudades> listado2 = (ViewBag.listado2 != null) ? (List<Ciudades>)ViewBag.listado2 : new List<Ciudades>();
+    Especialistas Modelo = (ViewBag.modelo != null) ? (Especialistas)ViewBag.modelo : new Especialistas();
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/css/jquery.steps.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="form-especialista-editar" enctype="multipart/form-data" action="~/Especialista/Edit" method="post">
+                @Html.AntiForgeryToken()
+                <h2>Datos Especialista</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="NombreEsp" id="nombre-especialista" value="@Modelo.NombreEsp" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="apellido-especialista" name="ApellidoEsp" value="@Modelo.ApellidoEsp" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="foto-especialista" name="FotoEsp" placeholder="Ingresa tu foto">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Pagina Web</label>
+                        <div class="col-sm-9">
+                            <input type="url" class="form-control" id="pagina-especialista" name="PaginaWebEsp" value="@Modelo.PaginaWebEsp">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email-especialista" name="EmailEsp" value="@Modelo.EmailEsp" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Celular</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="celular-especialista" name="CelularEsp" value="@Modelo.CelularEsp" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Especialidad</label>
+                        <div class="col-sm-9">
+                            <select id="idEspecialidad" name="idEspecialidad" class="form-control">
+                                <option value="">Seleccione Especialidad</option>
+                                @{
+                                    foreach (Especialidades obj in listado)
+                                    {
+                                        if (obj.IdEspecialidad == @Modelo.IdEspecialidad)
+                                        {
+                                            <option value="@obj.IdEspecialidad" selected>@obj.NombreEspecialidad</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@obj.IdEspecialidad">@obj.NombreEspecialidad</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Membresia</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Tipo Membresia</label>
+                        <div class="col-sm-9">
+                            <select name="tipo-membresia" id="tipo-membresia" class="form-control" required>
+                                <option value="" >Seleccione tipo membresia</option>
+                                @{
+                                    if (@Modelo.Membresias.TipoMembresia.ToUpper().Equals("PREMIUM"))
+                                    {
+                                        <option value="premium" selected>Premium</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="premium">Premium</option>
+                                    }
+                                    if (@Modelo.Membresias.TipoMembresia.ToUpper().Equals("GRATUITA"))
+                                    {
+                                        <option value="gratuita" selected>Gratuita</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="gratuita">Gratuita</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Inicio</label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => Modelo.Membresias.FechaInicio, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Fecha de Fin</label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => Modelo.Membresias.FechaFin, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Consultorio</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Departamento</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Departamento-consultorio" name="Departamento-consultorio" @Modelo.Direcciones.ToList()[0].Area>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Ciudad</label>
+                        <div class="col-sm-9">
+                            <select id="idCiudad" name="idCiudad" class="form-control">
+                                <option value="">Seleccione Ciudad</option>
+                                @{
+                                    foreach (Ciudades obj in listado2)
+                                    {
+                                        if (obj.IdCiudad == @Modelo.Direcciones.ToList()[0].IdCiudad)
+                                        {
+                                            <option value="@obj.IdCiudad" selected>@obj.NombreCiudad</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@obj.IdCiudad">@obj.NombreCiudad</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Calle</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="calle-consultorio" name="calle-consultorio" value="@Modelo.Direcciones.ToList()[0].Calle" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <input type="tel" class="form-control" id="telefono-consultorio" name="telefono-consultorio" value="@Modelo.Direcciones.ToList()[0].TelefonoFijo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <legend class="margen">Ubicación</legend>
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <div class="map-content">
+                                <div id="panel">
+                                    <input id="address_map" type="text" class="input-lg" value="Bogota D.C , Colombia">
+                                    <input type="button" class="btn btn-primary" value="Geolocalizar" onclick="codeAddress()">
+                                </div>
+                                <div id="map-canvas"></div>
+                                <input type="hidden" name="latitud" id="latitud" value="@Modelo.Direcciones.ToList()[0].Latitud" />
+                                <input type="hidden" name="longitud" id="longitud" value="@Modelo.Direcciones.ToList()[0].Longitud" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Logueo</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="contraseña-especialista" name="contraseña-especialista" value="##########" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Confirmar Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="confirmar-contraseña-especialista" name="confirmar-contraseña-especialista" value="##########" required>
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    /*---------------variables para inicializar y actualizar el mapa de registro----------*/
+    /*Posicionar marker de mapa en el municipio seleccionado*/
+    
+    var geocoder = new google.maps.Geocoder();
+    var map = null;
+    var marker;
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            zoom: 11
+        }
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true
+        });
+        google.maps.event.addListener(marker, 'dragstart', function () {
+            //updateMarkerAddress('Ubicando');
+        });
+
+        google.maps.event.addListener(marker, 'drag', function () {
+            //updateMarkerStatus('Ubicando');
+            //updateMarkerPosition(marker.getPosition());
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            //updateMarkerStatus('Ubicado');
+            geocodePosition(marker.getPosition());
+        });
+    }
+
+    function updateMarkerPosition(latLng) {
+        document.getElementById('latitud').value = [latLng.lat()]
+        document.getElementById('longitud').value = [latLng.lng()]
+    }
+
+    function updateMarkerAddress(str) {
+        document.getElementById('address_map').value = str;
+    }
+
+    function geocodePosition(pos) {
+        geocoder.geocode({
+            latLng: pos
+        }, function (responses) {
+            if (responses && responses.length > 0) {
+                updateMarkerAddress(responses[0].formatted_address);
+            } else {
+                updateMarkerAddress('No se puede encontrar la dirección.');
+            }
+        });
+    }
+
+    function codeAddress() {
+        var address_map = document.getElementById('address_map');
+        if (address_map.value == '') {
+            address_map.value = "Bogota D.C , Colombia";
+        }
+        var address = address_map.value;
+        if (map != null) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                    updateMarkerPosition(results[0].geometry.location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }
+
+    function setLatitudLongitud() {
+        var lat = document.getElementById('latitud');
+        var long = document.getElementById('longitud');
+        if (lat.value != '' && long.value != '' && lat.value != undefined && long.value != undefined && lat.value != null && long.value != null) {
+            var latLong = new google.maps.LatLng(lat.value, long.value);
+            map.setCenter(latLong);
+            marker.setPosition(latLong);
+        }
+    }
+
+</script>
+
+
+
+
+
+

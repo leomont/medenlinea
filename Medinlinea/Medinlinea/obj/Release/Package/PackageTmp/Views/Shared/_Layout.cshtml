@@ -1,0 +1,280 @@
+﻿@using Medinlinea.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/Style/Styles.css" rel="stylesheet" />
+    <!--<link rel="shortcut icon" href="../favicon.ico">-->
+    <link rel="stylesheet" type="text/css" href="~/Style/estilos.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/estilos-slide.css" />
+    <link rel="stylesheet" href="~/lib/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+</head>
+<body>
+    @{var lstMensajes = (ViewBag.lstMensajes != null) ? (List<Mensaje>)ViewBag.lstMensajes : new List<Mensaje>();
+    UsuarioAuth usuario = (UsuarioAuth)Session["usuario"];
+    }
+
+
+    @{
+        if (usuario == null)
+        {
+            <div class="codrops-top">
+                <h2 class="logo"><span class="letra-med">MED</span><span class="letra-enlinea">ENLINEA</span></h2>
+                <a href="#" data-toggle="modal" data-target="#myModal"><h2 class="iniciar-sesion"><i class="glyphicon glyphicon-user"></i> Iniciar session</h2></a>
+            </div><!--/ Codrops top bar -->
+        }
+        else if (usuario.rol == 1)
+        {
+            <div class='menuwrap'>
+
+                <nav id='menu'>
+                    <input type='checkbox' />
+
+                    <label>
+                        <i class="fa fa-bars"></i>
+                        <span></span>
+                    </label>
+                    <ul>
+                        <li><a href='/'><h2 class="logo-dos"><span class="letra-med-dos">MED</span><span class="letra-enlinea-dos">ENLINEA</span></h2></a></li>
+                        <li>
+                            <a href='#'>Gestion Estadisticas <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='estadisticas-globales.html'>Ver Estadisticas / Globales</a></li>
+                                <li><a href='estadisticas-especiaistas'>Ver Estadisticas / Especialistas</a></li>
+                                @*<li><a href='#'>Ver Calificacion</a></li>*@
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Gestion Comerciales <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='nuevo-vendedor.html'>Ingresar Nuevo Vendedor</a></li>
+                                <li><a href='eliminar-vendedor.html'>Eliminar Vendedor</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Gestion Especialistas <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='~/Especialista/Create'>Ingresar Nuevo Especialista</a></li>
+                                <li><a href='nuevo-consultorio.html'>Agregar Consultorio</a></li>
+                                <li><a href='vigencias-suscripcion.html'>Ver Vigencias de Suscripcion</a></li>
+                                <li><a href='desactivar-suscripcion.html'>Desactivar o Activar Suscripciones</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Gestion Ciudades <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href="~/Ciudad/Create">Agregar Ciudad</a></li>
+                                <li><a href="~/Ciudad/Index">Eliminar Ciudades</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Gestion Especialidades <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='~/Especialidad/Create'>Agregar Especialidades</a></li>
+                                <li><a href='~/Especialidad/Index'>Eliminar Especialidad</a></li>
+                                <li><a href='imagen-especialidad.html'>Adicinar Especialidad Carrusel</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Gestion Publicidad <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='~/Publicidad/Create'>Adicionar Publicidad</a></li>
+                                <li><a href='~/Publicidad/Index'>Eliminar Publicidad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='chat.html'>Chat</a></li>
+                        <li><a href='#'>Salir</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        }
+        else if (usuario.rol == 3)
+        {
+
+            <div class='menuwrap'>
+
+                <nav id='menu'>
+                    <input type='checkbox' />
+
+                    <label>
+                        <i class="fa fa-bars"></i>
+                        <span></span>
+                    </label>
+                    <ul>
+                        <li><a href='/'><h2 class="logo-dos"><span class="letra-med-dos">MED</span><span class="letra-enlinea-dos">ENLINEA</span></h2></a></li>
+                        <li>
+                            <a href='#'>Especialistas <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='#'>Ingresar Nuevo Especialista</a></li>
+                                <li><a href='#'>Agregar Consultorio</a></li>
+                            </ul>
+                        </li>
+                        @Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")
+                    </ul>
+                </nav>
+            </div>
+        }
+        else if (usuario.rol == 2)
+        {
+            <div class='menuwrap'>
+
+                <nav id='menu'>
+                    <input type='checkbox' />
+
+                    <label>
+                        <i class="fa fa-bars"></i>
+                        <span></span>
+                    </label>
+                    <ul>
+                        <li><a href='/'><h2 class="logo-dos"><span class="letra-med-dos">MED</span><span class="letra-enlinea-dos">ENLINEA</span></h2></a></li>
+                        <li><a href='#'>Estadisitcas</a></li>
+                        <li>
+                            <a href='#'>Articulos <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='#'>Crear Nuevo Articulo</a></li>
+                                <li><a href='#'>Modificar Articulo</a></li>
+                                <li><a href='#'>Listar Articulos</a></li>
+                                <li><a href='#'>Eliminar Articulos</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href='#'>Mis Datos <font size='1'>&#9660;</font></a>
+                            <ul class='menus'>
+                                <li><a href='#'>Actualizar Datos</a></li>
+                                <li><a href='#'>Ingresar Hoja de Vida</a></li>
+                                <li><a href='#'>Actualizar Hoja de Vida</a></li>
+                                <li><a href='#'>Mostr Hoja de Vida</a></li>
+                            </ul>
+                        </li>
+                        @Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Home")
+                    </ul>
+                </nav>
+            </div>
+        }
+
+    }
+
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("MEDENLINEA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Especialistas", "Index", "Especialista")</li>
+                    <li>@Html.ActionLink("Curriculm", "Index", "Curriculum")</li>
+                    <li>@Html.ActionLink("Especialidades", "Index", "Especialidad")</li>
+                    <li>@Html.ActionLink("Membresias", "Index", "Membresia")</li>
+                    <li>@Html.ActionLink("Articulos", "Index", "Articulo")</li>
+                    <li>@Html.ActionLink("Direcciones", "Index", "Direccion")</li>
+                    <li>@Html.ActionLink("Estadisticas", "Index", "Estadistica")</li>
+                    <li>@Html.ActionLink("Citas", "Index", "Cita")</li>
+                    <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                    <li>@Html.ActionLink("Publicidad", "Index", "Publicidad")</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+
+    <div>
+        @RenderBody()
+
+
+    </div>
+
+    <div class="alert alert-success flyover flyover-bottom alerta-verde" id="msj-success">
+    </div>
+    <div class="alert alert-danger flyover flyover-bottom alerta-roja" id="msj-error">
+    </div>
+
+    <!--EMPIEZA EL MODAL-->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Iniciar sesión</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="form-logueo-usuario" enctype="multipart/form-data" action="~/Home/Autenticacion" method="post">
+                        <input type="text" name="user_name" id="user_name" placeholder="Ingrese su usuario">
+                        <input type="password" name="contrasena" id="contrasena" placeholder="Ingrese su contraseña">
+
+                        <button value='Ingresar' name="enviar" type='submit'>Ingresar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TERMINA MODAL-->
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/Scripts/layout.js"></script>
+
+
+    <script src="~/lib/owl.carousel/owl.carousel.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //Muestro los mensajes enviados por el servidor
+            @foreach (var d in @lstMensajes)
+            {
+                if (@d.tipo == "ERROR")
+                {
+
+                        @:messageError("@d.titulo", "@d.cuerpo");
+                                                                                                                                                                                                                                                    }
+                else
+                {
+                        @:messageSuccess("@d.titulo", "@d.cuerpo");
+                                                                                                                                                                                                                                                                                }
+            }
+        });
+
+        $(".owl-carousel").owlCarousel({
+            margin: 10
+        });
+
+        $('#myModal').on('shown.bs.modal', function () {
+        });
+    </script>
+
+    <script src="~/lib/jquery-steps/js/jquery.steps.js"></script>
+    <script>
+    $(function () {
+        $("#form-especialista").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            labels: {
+                cancel: "Cancelar",
+                current: "Actual paso:",
+                pagination: "Paginacion",
+                finish: "Terminar",
+                next: "Siguiente",
+                previous: "Anterior",
+                loading: "Cargando ..."
+            },
+        });
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿@model Medinlinea.Models.Especialidades
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Especialidades</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEspecialidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEspecialidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenEspecialidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenEspecialidad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEspecialidad }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,114 @@
+﻿@model Medinlinea.Models.Especialistas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Especialistas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FotoEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaWebEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaginaWebEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CelularEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CelularEsp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Curriculums.ImagenCV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Curriculums.ImagenCV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialidades.NombreEspecialidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidades.NombreEspecialidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membresias.TipoMembresia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membresias.TipoMembresia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Login.UsuarioLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login.UsuarioLogin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEspecialista }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MedinlineaModelStoreContainer" CdmEntityContainer="MedinlineaEntities">
+    <EntitySetMapping Name="Articulos">
+      <EntityTypeMapping TypeName="MedinlineaModel.Articulos">
+        <MappingFragment StoreEntitySet="Articulos">
+          <ScalarProperty Name="IdArticulo" ColumnName="IdArticulo" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Resumen" ColumnName="Resumen" />
+          <ScalarProperty Name="Cuerpo" ColumnName="Cuerpo" />
+          <ScalarProperty Name="Etiquetas" ColumnName="Etiquetas" />
+          <ScalarProperty Name="ImagenArt" ColumnName="ImagenArt" />
+          <ScalarProperty Name="IdEspecialista" ColumnName="IdEspecialista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Citas">
+      <EntityTypeMapping TypeName="MedinlineaModel.Citas">
+        <MappingFragment StoreEntitySet="Citas">
+          <ScalarProperty Name="TelefonoPac" ColumnName="TelefonoPac" />
+          <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+          <ScalarProperty Name="NombrePac" ColumnName="NombrePac" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="FechaNacimientoPac" ColumnName="FechaNacimientoPac" />
+          <ScalarProperty Name="EmailPac" ColumnName="EmailPac" />
+          <ScalarProperty Name="MensajeCita" ColumnName="MensajeCita" />
+          <ScalarProperty Name="Imagen1" ColumnName="Imagen1" />
+          <ScalarProperty Name="Imagen2" ColumnName="Imagen2" />
+          <ScalarProperty Name="Imagen3" ColumnName="Imagen3" />
+          <ScalarProperty Name="Imagen4" ColumnName="Imagen4" />
+          <ScalarProperty Name="IdEspecialista" ColumnName="IdEspecialista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curriculums">
+      <EntityTypeMapping TypeName="MedinlineaModel.Curriculums">
+        <MappingFragment StoreEntitySet="Curriculums">
+          <ScalarProperty Name="IdCV" ColumnName="IdCV" />
+          <ScalarProperty Name="ImagenCV" ColumnName="ImagenCV" />
+          <ScalarProperty Name="DescripcionCV" ColumnName="DescripcionCV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direcciones">
+      <EntityTypeMapping TypeName="MedinlineaModel.Direcciones">
+        <MappingFragment StoreEntitySet="Direcciones">
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="IdEspecialista" ColumnName="IdEspecialista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialidades">
+      <EntityTypeMapping TypeName="MedinlineaModel.Especialidades">
+        <MappingFragment StoreEntitySet="Especialidades">
+          <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+          <ScalarProperty Name="NombreEspecialidad" ColumnName="NombreEspecialidad" />
+          <ScalarProperty Name="ImagenEspecialidad" ColumnName="ImagenEspecialidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialistas">
+      <EntityTypeMapping TypeName="MedinlineaModel.Especialistas">
+        <MappingFragment StoreEntitySet="Especialistas">
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="IdEspecialista" ColumnName="IdEspecialista" />
+          <ScalarProperty Name="NombreEsp" ColumnName="NombreEsp" />
+          <ScalarProperty Name="ApellidoEsp" ColumnName="ApellidoEsp" />
+          <ScalarProperty Name="FotoEsp" ColumnName="FotoEsp" />
+          <ScalarProperty Name="PaginaWebEsp" ColumnName="PaginaWebEsp" />
+          <ScalarProperty Name="EmailEsp" ColumnName="EmailEsp" />
+          <ScalarProperty Name="CelularEsp" ColumnName="CelularEsp" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+          <ScalarProperty Name="IdCurriculum" ColumnName="IdCurriculum" />
+          <ScalarProperty Name="IdSuscripcion" ColumnName="IdSuscripcion" />
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estadisticas">
+      <EntityTypeMapping TypeName="MedinlineaModel.Estadisticas">
+        <MappingFragment StoreEntitySet="Estadisticas">
+          <ScalarProperty Name="IdEstadistica" ColumnName="IdEstadistica" />
+          <ScalarProperty Name="CantBusquedas" ColumnName="CantBusquedas" />
+          <ScalarProperty Name="ClickEnPaginaWeb" ColumnName="ClickEnPaginaWeb" />
+          <ScalarProperty Name="ConsultasRealizadas" ColumnName="ConsultasRealizadas" />
+          <ScalarProperty Name="ClickEnCurriculum" ColumnName="ClickEnCurriculum" />
+          <ScalarProperty Name="IdEspecialista" ColumnName="IdEspecialista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Membresias">
+      <EntityTypeMapping TypeName="MedinlineaModel.Membresias">
+        <MappingFragment StoreEntitySet="Membresias">
+          <ScalarProperty Name="IdMembresia" ColumnName="IdMembresia" />
+          <ScalarProperty Name="TipoMembresia" ColumnName="TipoMembresia" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publicidades">
+      <EntityTypeMapping TypeName="MedinlineaModel.Publicidades">
+        <MappingFragment StoreEntitySet="Publicidades">
+          <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+          <ScalarProperty Name="CantidadClicks" ColumnName="CantidadClicks" />
+          <ScalarProperty Name="IdPublicidad" ColumnName="IdPublicidad" />
+          <ScalarProperty Name="TipoPublicidad" ColumnName="TipoPublicidad" />
+          <ScalarProperty Name="ImagenPub" ColumnName="ImagenPub" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="MedinlineaModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+          <ScalarProperty Name="CedulaUsuario" ColumnName="CedulaUsuario" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+          <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
+          <ScalarProperty Name="EmailUsuario" ColumnName="EmailUsuario" />
+          <ScalarProperty Name="CelularUsuario" ColumnName="CelularUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciudades">
+      <EntityTypeMapping TypeName="MedinlineaModel.Ciudades">
+        <MappingFragment StoreEntitySet="Ciudades">
+          <ScalarProperty Name="NombreCiudad" ColumnName="NombreCiudad" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="MedinlineaModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+          <ScalarProperty Name="PasswordLogin" ColumnName="PasswordLogin" />
+          <ScalarProperty Name="UsuarioLogin" ColumnName="UsuarioLogin" />
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoUsuario">
+      <EntityTypeMapping TypeName="MedinlineaModel.TipoUsuario">
+        <MappingFragment StoreEntitySet="TipoUsuario">
+          <ScalarProperty Name="NombreTipoUsuario" ColumnName="NombreTipoUsuario" />
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MedinlineaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MedinlineaModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MedinlineaModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MedinlineaModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MedinlineaModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedinlineaModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MedinlineaModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedinlineaModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MedinlineaModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MedinlineaModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

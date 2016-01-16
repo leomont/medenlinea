@@ -1,0 +1,72 @@
+﻿@model Medinlinea.Models.Articulos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Articulos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resumen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resumen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuerpo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuerpo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etiquetas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Etiquetas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenArt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenArt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialistas.NombreEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialistas.NombreEsp)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

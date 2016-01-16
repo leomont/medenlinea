@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "EstadisticasEspecialista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form action="" id="form-especialista">
+                <h2 style="text-align: center;">Estadistica por Especialista</h2>
+                <br>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Especialista</label>
+                    <div class="col-sm-9">
+                        <select name="tipo-membresia" name="nombre-vendedor" class="form-control">
+                            <option value="premium">Seleccione Especialista</option>
+                            <option value="premium">Leonardo Montes</option>
+                            <option value="gratuita">Jonathan Ospina</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+            </form>
+            <p class="text-center">
+                <button type="button" name="paginar" onclick="getPagPublication(null);" class="btn btn-primary btn-sm">Ver</button>
+
+                <button type="button" name="paginar" onclick="getPagPublication(null);" class="btn btn-default btn-sm">Volver</button>
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Busquedas</th>
+                            <th>Click en Url</th>
+                            <th>Consultas</th>
+                            <th>Click en CV</th>
+                            <th>Click en publicidad</th>
+                            <th>Calificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>10</td>
+                            <td>2</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model Medinlinea.Models.Estadisticas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estadisticas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CantBusquedas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantBusquedas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClickEnPaginaWeb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClickEnPaginaWeb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsultasRealizadas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsultasRealizadas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClickEnCurriculum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClickEnCurriculum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialistas.NombreEsp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialistas.NombreEsp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEstadistica }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

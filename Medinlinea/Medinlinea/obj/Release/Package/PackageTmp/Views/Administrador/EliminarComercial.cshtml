@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "EliminarComercial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form action="" id="form-especialista">
+                <h2 style="text-align: center;">Eliminar Vendedor</h2>
+                <br>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Vendedor</label>
+                    <div class="col-sm-9">
+                        <select name="tipo-membresia" name="nombre-vendedor" class="form-control">
+                            <option value="premium">Seleccione Especialista</option>
+                            <option value="premium">Leonardo Montes</option>
+                            <option value="gratuita">David Eduardo</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+            </form>
+            <h2 style="text-align: center;">Datos Vendedor</h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Celular</th>
+                            <th>Direccion</th>
+                            <th>Cedula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jonathan</td>
+                            <td>Ospina Garcia</td>
+                            <td>Jonresident@hotmail.com</td>
+                            <td>3165497426</td>
+                            <td>Cll 28a crr 31a</td>
+                            <td>1053622702</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="text-center">
+                <button type="button" name="paginar" onclick="getPagPublication(null);" class="btn btn-primary btn-sm">Eliminar</button>
+            </p>
+
+
+
+        </div>
+    </div>
+</div>
+
+
