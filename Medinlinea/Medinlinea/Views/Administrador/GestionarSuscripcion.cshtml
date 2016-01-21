@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "GestionarSuscripcion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<Especialistas> listado = (ViewBag.listado != null) ? (List<Especialistas>)ViewBag.listado : new List<Especialistas>();
+}
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+            <div class="col-xs-12 col-sm-12">
+                <div class="cajaTitulo">
+                    <p class="text-center" style="font-size:30px !important; color:white;">GESTIONAR MEMBRESIA</p>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+
+            <form id="form-gestion-mebresias" enctype="multipart/form-data" action="~/Membresia/Edit_activar" method="post">
+                @Html.AntiForgeryToken()
+                <br>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Especiaslistas</label>
+                    <div class="col-sm-9">
+                        <select name="idEspecialista" class="form-control">
+                            <option value="">Seleccione Especialista</option>
+                            @{
+                                foreach (Especialistas obj in listado)
+                                {
+                                    <option value="@obj.IdEspecialista">@obj.NombreEsp @obj.ApellidoEsp</option>
+                                }
+                            }
+                        </select>
+                        <br>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Estado Suscripcion</label>
+                    <div class="col-sm-9">
+                        <select name="estadoMembresia" class="form-control">
+                            <option value="">Seleccione Estado</option>
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+
+                <p class="text-center">
+                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+</div>

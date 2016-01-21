@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Medinlinea.Models.Citas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombrePac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimientoPac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailPac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MensajeCita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonoPac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialistas.NombreEsp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombrePac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimientoPac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailPac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MensajeCita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefonoPac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialistas.NombreEsp)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCita }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdCita }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCita })
+        </td>
+    </tr>
+}
+
+</table>

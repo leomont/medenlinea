@@ -1,0 +1,83 @@
+@{
+    ViewBag.Title = "IngresarComercial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/css/jquery.steps.css" rel="stylesheet" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="form-comercial" enctype="multipart/form-data" action="~/Usuario/Create_nuevo" method="post">
+                @Html.AntiForgeryToken()
+                <h2>Datos del Vendedor</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="nombre_vendedor" id="nombre_vendedor" placeholder="Ingresa tu nombre">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="apellido_vendedor" id="apellido_vendedor" placeholder="Ingresa tu apellido">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Cedula</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="cedula-vendedor" id="cedula-vendedor" placeholder="Ingresa tu cedula">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" name="email_vendedor" id="email_vendedor" placeholder="Ingresa tu email">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Celular</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="celular-vendedor" id="celular-vendedor" placeholder="Ingresa tu celular">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Direccion</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="direccion-vendedor" id="direccion-vendedor" placeholder="Ingresa tu direccion">
+                            <br>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>Logueo</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="contrasena_vendedor" id="contrasena_vendedor" placeholder="Ingresa tu contraseña">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Confirmar Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="confirmar_contrasena_vendedor" id="confirmar_contrasena_vendedor" placeholder="ingresa de nuevo tu contraseña">
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>
+

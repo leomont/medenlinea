@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "CrearArticulo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+            
+            <form action="" id="form-especialista">
+                <h2 style="text-align: center;">Nuevo Articulo</h2>
+                @*<section>*@
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Titulo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="titulo-articulo" id="titulo-articulo" placeholder="Ingresa el titulo de articulo">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Resumen</label>
+                        <div class="col-sm-9">
+                            <textarea name="resumen-articulo" class="form-control"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Cuerpo</label>
+                        <div class="col-sm-9">
+                            <textarea name="cuerpo-articulo" class="form-control"></textarea>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Etiquetas</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="etiquetas-articulo" id="etiquetas-articulo" placeholder="Ingresa las etiquetas>">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Imagen</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" name="imagen-articulo" id="imagen-articulo">
+                            <br>
+                        </div>
+                    </div>
+                @*</section>*@
+
+            </form>
+
+            <p class="text-center">
+                <button type="button" name="paginar" onclick="getPagPublication(null);" class="btn btn-primary btn-sm">Crear</button>
+            </p>
+
+        </div>
+    </div>
+</div>

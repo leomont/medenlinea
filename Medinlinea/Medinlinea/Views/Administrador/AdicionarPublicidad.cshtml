@@ -1,0 +1,122 @@
+﻿@using Medinlinea.Models
+
+@{
+    ViewBag.Title = "AdicionarPublicidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<Especialistas> listado = (ViewBag.listado != null) ? (List<Especialistas>)ViewBag.listado : new List<Especialistas>();
+}
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="cajaTitulo">
+                <p class="text-center" style="font-size:30px !important; color:white;">NUEVA PUBLICIDAD</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="frm_publicidad" enctype="multipart/form-data" action="~/Publicidad/Create" method="post">
+                @Html.AntiForgeryToken()
+                <br>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Especiaslistas</label>
+                    <div class="col-sm-9">
+                        <select id="IdMedico" name="IdMedico" class="form-control">
+                            <option value="">Seleccione Especialista</option>
+                            @{
+                                foreach (Especialistas obj in listado)
+                                {
+                                    <option value="@obj.IdEspecialista">@obj.NombreEsp @obj.ApellidoEsp</option>
+                                }
+                            }
+                        </select>
+
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Imagen</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" id="ImagenPub" name="ImagenPub" placeholder="Ingresa tu foto">
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Tipo de Publicidad</label>
+                    <div class="col-sm-9">
+                        <select id="TipoPublicidad" name="TipoPublicidad" class="form-control">
+                            <option value="">Seleccione Publicidad</option>
+                            <option value="Lateral derecha superior">Lateral Derecho Superior</option>
+                            <option value="Lateral derecha inferior">Lateral Derecho Inferior</option>
+                            <option value="Fondo">Fondo de Pantalla</option>
+                            <option value="Superior horizontal">Superior Horizontal</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <button type="button" name="enviar" onclick="validar_enviar();" class="btn btn-primary btn-sm">Nuevo</button>
+                </p>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //validacion de campos
+    function validar_enviar() {
+        var form = $("#frm_publicidad");
+        form.bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok-circle',
+                invalid: 'glyphicon glyphicon-ban-circle',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                ImagenPub: {
+                    validators: {
+                        notEmpty: {
+                            message: "La imagen es requerido"
+                        }
+                    }
+                },
+                IdMedico: {
+                    validators: {
+                        callback: {
+                            message: 'El especialista es requerido',
+                            callback: function (value, validator, $field) {
+                                var options = validator.getFieldElements('IdMedico').val();
+                                return (options != null && options.length > 0);
+                            }
+                        }
+                    }
+                },
+                TipoPublicidad: {
+                    validators: {
+                        callback: {
+                            message: 'El tipo de publicidad es requerido',
+                            callback: function (value, validator, $field) {
+                                var options = validator.getFieldElements('TipoPublicidad').val();
+                                return (options != null && options.length > 0);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        form.bootstrapValidator('validate');
+        var bootstrapValidator = form.data('bootstrapValidator');
+        if (bootstrapValidator.isValid()) {
+            showLoading();
+            formulario = document.getElementById("frm_publicidad");
+            formulario.submit();
+        }
+    };
+</script>
+

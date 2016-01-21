@@ -1,0 +1,73 @@
+﻿@model Medinlinea.Models.Articulos
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/estilos.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-rating/css/star-rating.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+
+            <form id="form-especialista" enctype="multipart/form-data" action="~/Articulo/Edit" method="post" onsubmit="showLoading();">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="IdArticulo" id="IdArticulo" value="@Model.IdArticulo" />
+                <input type="hidden" name="IdEspecialista" id="IdEspecialista" value="@Model.IdEspecialista" />
+                <section>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Titulo</label>
+                        <div class="col-sm-9">
+                            <input type="text" maxlength="50" class="form-control" name="titulo" id="titulo" value="@Model.Titulo" required>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Resumen</label>
+                        <div class="col-sm-9">
+                            <textarea maxlength="256" id="resumen" name="resumen" class="textarea form-control textarea-height"  >@Model.Resumen</textarea>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Cuerpo</label>
+                        <div class="col-sm-9">
+                            <textarea maxlength="10000" id="cuerpo" name="cuerpo" class="textarea form-control textarea-height">@Model.Cuerpo</textarea>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Etiquetas</label>
+                        <div class="col-sm-9">
+                            <input type="text" maxlength="49" class="form-control" id="etiquetas" name="etiquetas" value="@Model.Etiquetas">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Imagen</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="imagenArt" name="imagenArt" placeholder="Ingresa la imagen">
+                        </div>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <div class="center-block">
+                        <button type="submit" class="btn btn-success">Editar</button>
+                        <button type="button" onclick="window.location = '/Articulo/Index'" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
