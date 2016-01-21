@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "EliminarPublicidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Style/estilos.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="cajaTitulo">
+                <p class="text-center" style="font-size:30px !important; color:white;">ELIMINAR PUBLICIDAD</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <br>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Tipo de Publicidad</label>
+                    <div class="col-sm-9">
+                        <select name="tipoPublicidad" id="tipoPublicidad" class="form-control" onchange="updateImagenes();">
+                            <option value="">Seleccione Publicidad</option>
+                            <option value="Lateral derecha superior">Lateral Derecho Superior</option>
+                            <option value="Lateral derecha inferior">Lateral Derecho Inferior</option>
+                            <option value="Fondo">Fondo de Pantalla</option>
+                            <option value="Superior horizontal">Superior Horizontal</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-sm-offset-1">
+            <div id="imagenesPublicidad">
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function updateImagenes()
+    {
+        var opcion = document.getElementById('tipoPublicidad').value;
+
+        showLoading();
+        var datos = {
+            "tipoPublicidad": opcion
+        };
+        $.ajax({
+            type: "POST",
+            url: location.protocol + '//' + location.host + '/Publicidad/updateImagenes',
+            data: JSON.stringify(datos),
+            cache: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                var div = document.getElementById('imagenesPublicidad');
+                div.innerHTML = '';
+                var nuevo = '';
+                
+                for (var i = 0; i < data.Result.length; i++)
+                {
+                    var imagen = (data.Result[i].ImagenPub != '' && data.Result[i].ImagenPub != undefined) ? data.Result[i].ImagenPub : '../img/manizales/manizales_1.jpg';
+                    nuevo += '<figure style="background-image: url(../img/manizales/manizales_1.jpg)" class="snip1090">' +
+                                '<img src="' + imagen + '" alt="sample41" />' +
+                                '<figcaption>' +
+                                    '<h2><span> ' + data.Result[i].TipoPublicidad + '</span></h2>' +
+                                '</figcaption>' +
+                                '<div class="links"><a href="../Publicidad/Delete?id=' + data.Result[i] .IdPublicidad+ '"><i class="ion-clipboard"></i><span>Eliminar</span></a></div>' +
+                            '</figure>';
+                }
+                div.innerHTML = nuevo;
+                hideLoading();
+            },
+            error: function (ts) {
+                console.log(ts);
+                hideLoading();
+            }
+        });
+    }
+</script>
+
+
