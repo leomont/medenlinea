@@ -190,14 +190,86 @@ namespace Medinlinea.Controllers
             TempData.Remove("mensajes");
             return View();
         }
+        [HttpGet]
+        public JsonResult getChats()
+        {
+            List<Chats> listado = db.Chats.OrderBy(m => m.id).Skip(Math.Max(0, db.Chats.ToList().Count - 20)).Take(10).ToList();
 
-        public ActionResult Chat()
+            var resulSet = Json(new { listado }, "application/json; charset=utf-8", JsonRequestBehavior.AllowGet);
+            resulSet.MaxJsonLength = 2147483647;
+            return resulSet;
+        }
+
+        [HttpGet]
+        public JsonResult createChat(string nombre, string mensaje)
         {
             List<Mensaje> lstMensajes = (((List<Mensaje>)TempData["mensajes"]) == null) ? new List<Mensaje>() : (List<Mensaje>)TempData["mensajes"];
+            UsuarioAuth usuario = (UsuarioAuth)Session["usuario"];
+            try
+            {
+                if (usuario != null)
+                {
+                    if (usuario.rol == 1)
+                    {
+                        nombre = "ADMINISTRADOR";
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(nombre))
+                {
+                    if (usuario != null)
+                    {
+                        if (usuario.rol == 1)
+                        {
+                            db.Chats.Add(
+                        new Chats
+                        {
+                            nombre = "ADMINISTRADOR",
+                            mensaje = mensaje,
+                            tipo_usuario = "ADMINISTRADOR",
+                            fecha_creacion = DateTime.Now
+                        }
+                        );
+                        }
+                    }
+                    else
+                    {
+                        db.Chats.Add(
+                            new Chats
+                            {
+                                nombre = nombre,
+                                mensaje = mensaje,
+                                tipo_usuario = "USUARIO",
+                                fecha_creacion = DateTime.Now
+                            }
+                            );
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                var sb = new System.Text.StringBuilder();
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        lstMensajes.Add(new Mensaje { tipo = "Error", titulo = "Error", cuerpo = error.PropertyName + ":" + error.ErrorMessage });
+                        sb.AppendLine();
+                    }
+                }
+                lstMensajes.Add(new Mensaje { tipo = "Error", titulo = "Error", cuerpo = sb.ToString() });
+                TempData["mensajes"] = lstMensajes;
+                SystemLog log = new SystemLog();
+                log.ErrorLog(sb.ToString());
+                throw new Exception(sb.ToString());
+            }
+            List<Chats> listado = db.Chats.OrderBy(m => m.id).Skip(Math.Max(0, db.Chats.ToList().Count - 20)).Take(10).ToList();
 
-            ViewBag.lstMensajes = lstMensajes;
-            TempData.Remove("mensajes");
-            return View();
+            var resulSet = Json(new { listado }, "application/json; charset=utf-8", JsonRequestBehavior.AllowGet);
+            resulSet.MaxJsonLength = 2147483647;
+            return resulSet;
         }
     }
 }

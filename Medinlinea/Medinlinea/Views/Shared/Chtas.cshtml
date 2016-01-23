@@ -1,0 +1,160 @@
+﻿@using Medinlinea.Models
+@{
+    UsuarioAuth usuario = (UsuarioAuth)Session["usuario"];
+}
+
+<link href="~/Style/chat/converse.min.css" rel="stylesheet" />
+
+
+@*DIV CHAT*@
+<div id="conversejs" style="display: block;">
+    <a href="#" id="toggle-controlbox" class="toggle-controlbox" style="display: none;">
+        <span class="conn-feedback">Chat</span>
+        <span style="display: none" id="online-count">(0)</span>
+    </a>
+    <div id="controlbox" class="chatbox" style="display: block; width: 200px;">
+        <div id="div_chat" class="flyout box-flyout" style="width: 400px; margin-left: -200px">
+            <div class="dragresize dragresize-top"></div>
+            <div class="dragresize dragresize-topleft"></div>
+            <div class="dragresize dragresize-left"></div>
+            <div class="chat-head controlbox-head">
+                <ul id="controlbox-tabs">
+                    <li><a class="current" href="#login-dialog">CHAT</a></li>
+                </ul>
+                <a class="chatbox-btn close-chatbox-button icon-close"></a>
+            </div>
+            <div class="controlbox-panes">
+                <div id="login-dialog" class="controlbox-pane">
+                    <label>MENSAJES:</label>
+                    <textarea class="form-control" disabled name="MensajeAdm" id="MensajeAdm" cols="5" rows="9"></textarea>
+                    <br />
+                    @{
+                        if (usuario == null)
+                        {
+                            <label>Nombre:</label>
+                            <input type="text" maxlength="256" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese nombre">
+                            <br />
+                        }
+                        else if (usuario.rol > 1)
+                        { 
+                            <label>Nombre:</label>
+                            <input type="text" maxlength="256" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese nombre">
+                            <br />
+                        }
+                    }
+                    <label>Mensaje:</label>
+                    <textarea class="form-control" maxlength="500" name="MensajeUsuario" id="MensajeUsuario" cols="5" rows="2"></textarea>
+                    <br />
+                    <button class="pure-button button-primary" onclick="enviarChat();" id="btn_enviar"><span id="loading_btn" style="display:none" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Enviar</button>
+                    <span class="conn-feedback"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        cargarChats();
+    });
+    var intervalCargarChats = setInterval(function () { cargarChats(); }, 20000);
+
+    function cargarChats() {
+        $.ajax({
+            type: "GET",
+            url: location.protocol + '//' + location.host + "/Administrador/getChats",
+            data: null,
+            cache: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (data) {
+                if (data.listado != null && data.listado != undefined) {
+                    var txt = $("#MensajeAdm");
+                    for (var i = 0; i < data.listado.length; i++) {
+                        txt.val(txt.val() + "\n" + data.listado[i].nombre + ": ");
+                        txt.val(txt.val() + "\n " + data.listado[i].mensaje);
+                    }
+                    //animo el chat para que se mueva a la ultima fila
+                    $("#MensajeAdm").animate({
+                        scrollTop: $("#MensajeAdm")[0].scrollHeight - $("#MensajeAdm").height()
+                    }, 1000, function () {
+                    });
+                }
+                hideLoading();
+            },
+            error: function (ts) {
+                hideLoading();
+            }
+        });
+    }
+
+    function enviarChat() {
+        var txt_nombre = document.getElementById('nombreUsuario');
+        var nombre = '';
+        var msn = document.getElementById('MensajeUsuario');
+        document.getElementById('loading_btn').style.display = "block";
+        document.getElementById('btn_enviar').disabled = true;
+        if (txt_nombre == null && txt_nombre == undefined) {
+            nombre = 'VISITANTE';
+        }
+        else {
+            nombre=txt_nombre.value
+        }
+        if (nombre != '' && msn.value != null && msn.value != undefined && msn.value != '') {
+            $.ajax({
+                type: "GET",
+                url: location.protocol + '//' + location.host + "/Administrador/createChat",
+                data: { 'nombre': nombre, 'mensaje': msn.value },
+                cache: false,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (data) {
+                    if (data.listado != null && data.listado != undefined) {
+                        var txt = $("#MensajeAdm");
+                        $("#MensajeAdm").val('');
+                        for (var i = 0; i < data.listado.length; i++) {
+                            txt.val(txt.val() + "\n" + data.listado[i].nombre + ": ");
+                            txt.val(txt.val() + "\n " + data.listado[i].mensaje);
+                        }
+                    }
+                    $("#MensajeAdm").animate({
+                        scrollTop: $("#MensajeAdm")[0].scrollHeight - $("#MensajeAdm").height()
+                    }, 1000, function () {
+
+                    });
+
+                    msn.value = '';
+                    document.getElementById('loading_btn').style.display = "none";
+                    document.getElementById('btn_enviar').disabled = false;
+                    hideLoading();
+                },
+                error: function (ts) {
+                    hideLoading();
+                }
+            });
+        }
+    }
+
+    //------------------------------
+    $('.icon-close').bind('click', function (event) {
+        var divChat = $('#div_chat');
+        var btnClose = $('#toggle-controlbox');
+        divChat.animate({ 'top': '400px' }, 2000, 'easeInOutExpo');
+        btnClose.delay(1000).show(0);
+        clearInterval(intervalCargarChats);
+    });
+
+    $('#toggle-controlbox').bind('click', function (event) {
+        var divChat = $('#div_chat');
+        $(this).hide();
+        divChat.animate({ 'top': '-=830px' }, 200, 'easeInOutExpo');
+
+        intervalCargarChats = setInterval(function () { cargarChats(); }, 20000);
+    });
+</script>

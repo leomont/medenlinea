@@ -4,20 +4,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Medenlinea</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <title>Medenlinea</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link href="~/Style/Styles.css" rel="stylesheet" />
     <!--<link rel="shortcut icon" href="../favicon.ico">-->
     <link rel="stylesheet" type="text/css" href="~/Style/estilos.css" />
     <link rel="stylesheet" type="text/css" href="~/Style/estilos-slide.css" />
-    <link rel="stylesheet" href="~/lib/owl.carousel/assets/owl.carousel.css">
-    <link href="~/lib/bootstrapValidator-0.5.2/css/bootstrapValidator.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/lib/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrapValidator-0.5.2/css/bootstrapValidator.css" />
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
 </head>
 <body>
     @{var lstMensajes = (ViewBag.lstMensajes != null) ? (List<Mensaje>)ViewBag.lstMensajes : new List<Mensaje>();
     UsuarioAuth usuario = (UsuarioAuth)Session["usuario"];
+    bool admOnline = Medinlinea.MvcApplication.admOnline;
     }
 
 
@@ -94,7 +96,6 @@
                                 <li><a href='~/Administrador/EliminarPublicidad'>Eliminar Publicidad</a></li>
                             </ul>
                         </li>
-                        <li><a href='Chat'>Chat</a></li>
                         <li><a href='~/Home/CerrarSesion'>Cerrar sesión</a></li>
                     </ul>
                 </nav>
@@ -208,14 +209,25 @@
         </div>
     </div>
 
-    <!--TERMINA MODAL-->
+    @{
+        if (@admOnline != null)
+        {
+            if (@admOnline)
+            {
+                @Html.Partial("Chtas")
+            }
+        }
+    }
 
+
+    <!--TERMINA MODAL-->
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/Scripts/layout.js"></script>
     <script src="~/lib/bootstrapValidator-0.5.2/js/bootstrapValidator.js"></script>
     <script src="~/lib/jquery-steps/js/jquery.steps.js"></script>
     <script src="~/lib/owl.carousel/owl.carousel.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -227,14 +239,15 @@
                 {
 
                         @:messageError("@d.titulo", "@d.cuerpo");
-                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
                 else
                 {
                         @:messageSuccess("@d.titulo", "@d.cuerpo");
-                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
             }
         });
 
+        //---------------------------
         $(".owl-carousel").owlCarousel({
             margin: 10
         });

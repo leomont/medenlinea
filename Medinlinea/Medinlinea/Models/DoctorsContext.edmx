@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MedinlineaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MedinlineaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Articulos">
           <Key>
             <PropertyRef Name="IdArticulo" />
@@ -16,6 +16,16 @@
           <Property Name="Etiquetas" Type="nvarchar" MaxLength="50" />
           <Property Name="ImagenArt" Type="nvarchar(max)" />
           <Property Name="IdEspecialista" Type="int" />
+        </EntityType>
+        <EntityType Name="Chats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nombre" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="mensaje" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tipo_usuario" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Citas">
           <Key>
@@ -305,6 +315,7 @@
         </Association>
         <EntityContainer Name="MedinlineaModelStoreContainer">
           <EntitySet Name="Articulos" EntityType="Self.Articulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciudades" EntityType="Self.Ciudades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curriculums" EntityType="Self.Curriculums" Schema="dbo" store:Type="Tables" />
@@ -690,6 +701,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="Restaurar_Pass" EntityType="MedinlineaModel.Restaurar_Pass" />
+          <EntitySet Name="Chats" EntityType="MedinlineaModel.Chats" />
         </EntityContainer>
         <Association Name="FK_Publicidades_Especialistas">
           <End Type="MedinlineaModel.Especialistas" Role="Especialistas" Multiplicity="0..1" />
@@ -797,6 +809,16 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="correo_usuario" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="clave" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Chats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="mensaje" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_usuario" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -968,6 +990,17 @@
               <MappingFragment StoreEntitySet="Restaurar_Pass">
                 <ScalarProperty Name="clave" ColumnName="clave" />
                 <ScalarProperty Name="correo_usuario" ColumnName="correo_usuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="MedinlineaModel.Chats">
+              <MappingFragment StoreEntitySet="Chats">
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -89,6 +89,7 @@ namespace Medinlinea.Controllers
             return View(model);
         }
 
+        
         public JsonResult paginacion(int index = 1)
         {
             return null;

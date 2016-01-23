@@ -490,9 +490,11 @@
     <Content Include="lib\Swiper\src\js\wrap-start.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.12.0.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -500,8 +502,15 @@
     <Content Include="Scripts\layout.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Style\chat\converse.css" />
+    <Content Include="Style\chat\converse.min.css" />
+    <Content Include="Style\chat\theme.css" />
     <Content Include="Style\estilos-slide.css" />
     <Content Include="Style\estilos.css" />
+    <Content Include="Style\fonticons\demo-files\demo.css" />
+    <Content Include="Style\fonticons\demo-files\demo.js" />
+    <Content Include="Style\fonticons\fonts\icomoon.svg" />
+    <Content Include="Style\fonticons\style.css" />
     <Content Include="Style\fonts\BebasNeue-webfont.svg" />
     <Content Include="Style\fonts\Dharma Type Font License.txt" />
     <Content Include="Style\Styles.css" />
@@ -537,6 +546,9 @@
       <DependentUpon>DoctorsContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ArticulosModel.cs" />
+    <Compile Include="Models\Chats.cs">
+      <DependentUpon>DoctorsContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CifradoDatos.cs" />
     <Compile Include="Models\Citas.cs">
       <DependentUpon>DoctorsContext.tt</DependentUpon>
@@ -728,6 +740,11 @@
     <Content Include="Views\Administrador\ListarCiudad.cshtml" />
     <Content Include="Views\Home\RestaurarPassword.cshtml" />
     <Content Include="Views\Home\Restaurar.cshtml" />
+    <Content Include="Views\Shared\Chtas.cshtml" />
+    <Content Include="Style\fonticons\fonts\icomoon.eot" />
+    <Content Include="Style\fonticons\fonts\icomoon.ttf" />
+    <Content Include="Style\fonticons\fonts\icomoon.woff" />
+    <Content Include="Style\fonticons\selection.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

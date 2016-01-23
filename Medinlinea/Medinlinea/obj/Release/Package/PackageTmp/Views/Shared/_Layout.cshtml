@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Medenlinea</title>
+    <title>Medenlinea</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link href="~/Style/Styles.css" rel="stylesheet" />
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/lib/owl.carousel/assets/owl.carousel.css">
     <link href="~/lib/bootstrapValidator-0.5.2/css/bootstrapValidator.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+    <link href="~/Style/chat/converse.min.css" rel="stylesheet" />
 </head>
 <body>
     @{var lstMensajes = (ViewBag.lstMensajes != null) ? (List<Mensaje>)ViewBag.lstMensajes : new List<Mensaje>();
@@ -94,7 +95,6 @@
                                 <li><a href='~/Administrador/EliminarPublicidad'>Eliminar Publicidad</a></li>
                             </ul>
                         </li>
-                        <li><a href='Chat'>Chat</a></li>
                         <li><a href='~/Home/CerrarSesion'>Cerrar sesión</a></li>
                     </ul>
                 </nav>
@@ -186,6 +186,45 @@
     <div class="alert alert-danger flyover flyover-bottom alerta-roja" id="msj-error">
     </div>
 
+    @*DIV CHAT*@
+    <div id="conversejs" style="display: block;">
+        <a href="#" id="toggle-controlbox" class="toggle-controlbox" style="display: none;">
+            <span class="conn-feedback">Chat</span>
+            <span style="display: none" id="online-count">(0)</span>
+        </a>
+        <div id="controlbox" class="chatbox" style="display: block; width: 200px;">
+            <div id="div_chat" class="flyout box-flyout" style="width: 400px; margin-left: -200px">
+                <div class="dragresize dragresize-top"></div>
+                <div class="dragresize dragresize-topleft"></div>
+                <div class="dragresize dragresize-left"></div>
+                <div class="chat-head controlbox-head">
+                    <ul id="controlbox-tabs">
+                        <li><a class="current" href="#login-dialog">CHAT</a></li>
+                    </ul>
+                    <a class="chatbox-btn close-chatbox-button icon-close"></a>
+                </div>
+                <div class="controlbox-panes">
+                    <div id="login-dialog" class="controlbox-pane">
+                        <label>MENSAJES:</label>
+                        <textarea class="form-control" disabled name="MensajeAdm" id="MensajeAdm" cols="5" rows="9"></textarea>
+                        <br />
+                        <label>Nombre:</label>
+                        <input type="text" maxlength="256" id="nombreUsuario"  name="nombreUsuario" placeholder="Ingrese nombre">
+                        <br />
+                        <label>Mensaje:</label>
+                        <textarea class="form-control" maxlength="1000" name="MensajeUsuario" id="MensajeUsuario" cols="5" rows="2"></textarea>
+                        <br />
+                        <button class="pure-button button-primary" onclick="enviarChat();" id="btn_enviar"><span id="loading_btn" style="display:none" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Enviar</button>
+                        <span class="conn-feedback"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
     <!--EMPIEZA EL MODAL-->
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -209,15 +248,17 @@
     </div>
 
     <!--TERMINA MODAL-->
-
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/Scripts/layout.js"></script>
     <script src="~/lib/bootstrapValidator-0.5.2/js/bootstrapValidator.js"></script>
     <script src="~/lib/jquery-steps/js/jquery.steps.js"></script>
     <script src="~/lib/owl.carousel/owl.carousel.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
 
     <script type="text/javascript">
+        var chat_activo = true;
+
         $(document).ready(function () {
             hideLoading();
             //Muestro los mensajes enviados por el servidor
@@ -227,14 +268,110 @@
                 {
 
                         @:messageError("@d.titulo", "@d.cuerpo");
-                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                }
                 else
                 {
                         @:messageSuccess("@d.titulo", "@d.cuerpo");
-                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
             }
+            cargarChats();
+        });
+        //------------------------------
+        $('.icon-close').bind('click', function (event) {
+            var divChat = $('#div_chat');
+            var btnClose = $('#toggle-controlbox');
+            divChat.animate({ 'top': '400px' }, 2000, 'easeInOutExpo');
+            btnClose.delay(1000).show(0);
+            chat_activo = false;
         });
 
+        $('#toggle-controlbox').bind('click', function (event) {
+            var divChat = $('#div_chat');
+            $(this).hide();
+            divChat.animate({ 'top': '-=830px' }, 200, 'easeInOutExpo');
+            chat_activo = true;
+            cargarChats();
+        });
+
+        function cargarChats()
+        {
+            if (chat_activo === true) {
+                $.ajax({
+                    type: "GET",
+                    url: location.protocol + '//' + location.host + "/Administrador/getChats",
+                    data: null,
+                    cache: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (data) {
+                        if (data.listado != null && data.listado != undefined) {
+                            var txt = $("#MensajeAdm");
+                            for (var i = 0; i < data.listado.length; i++) {
+                                txt.val(txt.val() + "\n" + data.listado[i].nombre + ": ");
+                                txt.val(txt.val() + "\n " + data.listado[i].mensaje);
+                            }
+                            //animo el chat para que se mueva a la ultima fila
+                            $("#MensajeAdm").animate({
+                                scrollTop: $("#MensajeAdm")[0].scrollHeight - $("#MensajeAdm").height()
+                            }, 1000, function () {
+                                setInterval(function () {
+                                    cargarChats();
+                                }, 5000);
+                            });
+                        }
+                        hideLoading();
+                    },
+                    error: function (ts) {
+                        hideLoading();
+                    }
+                });
+            }
+        }
+
+        function enviarChat() {
+            var nombre=document.getElementById('nombreUsuario');
+            var msn = document.getElementById('MensajeUsuario');
+            document.getElementById('loading_btn').style.display = "block";
+            document.getElementById('btn_enviar').disabled = true;
+            if(nombre.value != null && nombre.value != undefined && nombre.value != ''
+                && msn.value != null && msn.value != undefined && msn.value != '')
+            {
+                $.ajax({
+                    type: "GET",
+                    url: location.protocol + '//' + location.host + "/Administrador/createChat",
+                    data: {'nombre':nombre.value,'mensaje':msn.value},
+                    cache: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (data) {
+                        if (data.listado != null && data.listado != undefined) {
+                            var txt = $("#MensajeAdm");
+                            $("#MensajeAdm").val('');
+                            for (var i = 0; i < data.listado.length; i++) {
+                                txt.val(txt.val() + "\n" + data.listado[i].nombre + ": ");
+                                txt.val(txt.val() + "\n " + data.listado[i].mensaje);
+                            }
+                        }
+                        $("#MensajeAdm").animate({
+                            scrollTop: $("#MensajeAdm")[0].scrollHeight - $("#MensajeAdm").height()
+                        }, 1000, function () {
+                            
+                        });
+
+                        msn.value = '';
+                        document.getElementById('loading_btn').style.display = "none";
+                        document.getElementById('btn_enviar').disabled = false;
+                        hideLoading();
+                    },
+                    error: function (ts) {
+                        hideLoading();
+                    }
+                });
+            }
+        }
+        //---------------------------
         $(".owl-carousel").owlCarousel({
             margin: 10
         });

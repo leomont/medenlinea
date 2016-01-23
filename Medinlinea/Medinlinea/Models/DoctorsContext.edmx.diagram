@@ -32,6 +32,7 @@
         <EntityTypeShape EntityType="MedinlineaModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="MedinlineaModel.Usuarios" Width="1.5" PointX="8.25" PointY="1.125" />
         <AssociationConnector Association="MedinlineaModel.FK_Usuarios_Login" />
+        <EntityTypeShape EntityType="MedinlineaModel.Chats" Width="1.5" PointX="7.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

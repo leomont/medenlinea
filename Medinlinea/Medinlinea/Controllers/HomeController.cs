@@ -55,6 +55,11 @@ namespace Medinlinea.Controllers
                                 rol = listado[0].TipoUsuario.IdTipoUsuario,
                                 rolNombre = listado[0].TipoUsuario.NombreTipoUsuario
                             };
+                            if (listado[0].IdTipoUsuario == 1)
+                            {
+                                MvcApplication.admOnline = true;
+                            }
+
                             lstMensajes.Add(new Mensaje { tipo = "Notificacion", titulo = "Notificacion", cuerpo = "Usuario autenticado exitosamente." });
                         }
                         else if (listado[0].IdTipoUsuario == 3 && listado[0].Especialistas.Count > 0)
@@ -101,6 +106,11 @@ namespace Medinlinea.Controllers
             List<Mensaje> lstMensajes = (((List<Mensaje>)TempData["mensajes"]) == null) ? new List<Mensaje>() : (List<Mensaje>)TempData["mensajes"];
             if (Session["usuario"] != null)
             {
+                UsuarioAuth usuario = (UsuarioAuth)Session["usuario"];
+                if (usuario.rol == 1)
+                {
+                    MvcApplication.admOnline = false;
+                }
                 Session.RemoveAll();
                 lstMensajes.Add(new Mensaje { tipo = "Notificacion", titulo = "Notificacion", cuerpo = "Sesión finalizada." });
             }
